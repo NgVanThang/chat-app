@@ -1,31 +1,112 @@
 import React from 'react';
+import { Table } from 'antd';
 
 const StickyTable = () => {
+  const columns = [
+    {
+      title: 'Full Name',
+      width: 100,
+      dataIndex: 'name',
+      key: 'name',
+      fixed: 'left',
+    },
+    {
+      title: 'Column 1',
+      dataIndex: 'address',
+      key: '1',
+      width: 150,
+    },
+    {
+      title: 'Column 2',
+      dataIndex: 'address',
+      key: '2',
+      width: 150,
+    },
+    {
+      title: 'Column 3',
+      dataIndex: 'address',
+      key: '3',
+      width: 150,
+    },
+    {
+      title: 'Column 4',
+      dataIndex: 'address',
+      key: '4',
+      width: 150,
+    },
+    {
+      title: 'Column 5',
+      dataIndex: 'address',
+      key: '5',
+      width: 150,
+    },
+    {
+      title: 'Column 6',
+      dataIndex: 'address',
+      key: '6',
+      width: 150,
+    },
+    {
+      title: 'Column 7',
+      dataIndex: 'address',
+      key: '7',
+      width: 150,
+    },
+    {
+      title: 'Column 8',
+      dataIndex: 'address',
+      key: '8',
+      width: 150,
+    },
+    {
+      title: 'Column 9',
+      dataIndex: 'address',
+      width: 150,
+      key: '9',
+    },
+    {
+      title: 'Column 10',
+      dataIndex: 'address',
+      width: 150,
+      key: '10',
+    },
+    {
+      title: 'Column 11',
+      dataIndex: 'address',
+      width: 150,
+      key: '11',
+    },
+    {
+      title: 'Column 12',
+      dataIndex: 'address',
+      width: 150,
+      key: '12',
+    },
+    {
+      title: 'Action',
+      key: 'operation',
+      fixed: 'right',
+      width: 100,
+      render: () => <a href="https://google.com">action</a>,
+    },
+  ];
+  const data = [];
+  for (let i = 1; i <= 145; i++) {
+    data.push({
+      key: i,
+      name: i,
+      address: `Item ${i}`,
+    });
+  }
   return (
-    <div style={{ overflowX: 'auto', maxHeight: '400px' }}>
-      <table>
-        <thead>
-          <tr>
-            <th style={{ position: 'sticky', top: 0, backgroundColor: '#fff' }}>Header 1</th>
-            <th style={{ position: 'sticky', top: 0, backgroundColor: '#fff' }}>Header 2</th>
-            <th style={{ position: 'sticky', top: 0, backgroundColor: '#fff' }}>Header 3</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Row 1, Cell 1</td>
-            <td>Row 1, Cell 2</td>
-            <td>Row 1, Cell 3</td>
-          </tr>
-          <tr>
-            <td>Row 2, Cell 1</td>
-            <td>Row 2, Cell 2</td>
-            <td>Row 2, Cell 3</td>
-          </tr>
-          {/* Add more rows as needed */}
-        </tbody>
-      </table>
-    </div>
+    <Table
+      columns={columns}
+      dataSource={data}
+      scroll={{
+        x: 1500,
+        y: 500,
+      }}
+    />
   );
 };
 

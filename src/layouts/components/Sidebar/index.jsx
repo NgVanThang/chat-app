@@ -1,125 +1,92 @@
 import React, { useState } from 'react';
-import { MailOutlined, AppstoreOutlined, SettingOutlined, HomeOutlined } from '@ant-design/icons';
-import { Layout, Menu } from 'antd';
+import {
+  HomeOutlined,
+  RightOutlined,
+  LeftOutlined,
+  ProductOutlined,
+  TableOutlined,
+  UngroupOutlined,
+} from '@ant-design/icons';
+import { Layout, Menu, Image, Button, Col, Row, Flex } from 'antd';
 import { Link } from 'react-router-dom';
 
-function Sidebar({ collapsed, setCollapsed }) {
+function Sidebar({ collapsed, setCollapsed, currentURL }) {
   const { Sider } = Layout;
 
   const items = [
     {
-      key: 'grp',
+      key: 'home',
+      icon: <HomeOutlined />,
+      label: <Link to="/">Trang chủ</Link>,
+    },
+    {
+      key: 'table',
+      icon: <TableOutlined />,
+      label: <Link to="/table">Bảng</Link>,
+    },
+    {
+      key: 'grp1',
       label: 'Group',
-      type: 'group',
+      icon: <UngroupOutlined />,
       children: [
         {
-          key: 'home',
-          icon: <HomeOutlined />,
-          label: <Link to="/">Trang chủ</Link>,
-        },
-        {
-          key: 'following',
-          label: <Link to="/following">Theo dõi</Link>,
-        },
-      ],
-    },
-    {
-      key: 'sub1',
-      label: 'Navigation One',
-      icon: <MailOutlined />,
-      children: [
-        {
-          key: 'g1',
-          label: 'Item 1',
-          type: 'group',
+          key: 'aa',
+          label: 'Thông tin',
           children: [
             {
-              key: '1',
-              label: (
-                <a href="https://ant.design" target="_blank" rel="noopener noreferrer">
-                  Navigation Four - Link
-                </a>
-              ),
-            },
-            {
-              key: '2',
-              label: 'Option 2',
+              key: 'profile',
+              label: <Link to="/profile">Trang cá nhân</Link>,
             },
           ],
         },
         {
-          key: 'g2',
-          label: 'Item 2',
-          type: 'group',
+          key: 'bb',
+          label: 'Thêm',
           children: [
             {
-              key: '3',
-              label: 'Option 3',
-            },
-            {
-              key: '4',
-              label: 'Option 4',
+              key: 'following',
+              label: <Link to="/following">Theo dõi</Link>,
             },
           ],
         },
       ],
     },
     {
-      key: 'sub2',
-      label: 'Navigation Two',
-      icon: <AppstoreOutlined />,
+      key: 'product-list',
+      label: 'Sản phẩm',
+      icon: <ProductOutlined />,
       children: [
         {
-          key: '5',
-          label: 'Option 5',
+          key: 'product',
+          label: <Link to="/product">Danh sách</Link>,
         },
         {
-          key: '6',
-          label: 'Option 6',
-        },
-        {
-          key: 'sub3',
-          label: 'Submenu',
-          children: [
-            {
-              key: '7',
-              label: 'Option 7',
-            },
-            {
-              key: '8',
-              label: 'Option 8',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      type: 'divider',
-    },
-    {
-      key: 'sub4',
-      label: 'Navigation Three',
-      icon: <SettingOutlined />,
-      children: [
-        {
-          key: '9',
-          label: 'Option 9',
-        },
-        {
-          key: '10',
-          label: 'Option 10',
-        },
-        {
-          key: '11',
-          label: 'Option 11',
-        },
-        {
-          key: '12',
-          label: 'Option 12',
+          key: 'product/create',
+          label: <Link to="/product/create">Thêm sản phẩm</Link>,
         },
       ],
     },
   ];
+
+  const defaultSelectedKey = currentURL;
+
+  const findParentKeys = (items, currentKey, parents = []) => {
+    for (let item of items) {
+      if (item.key === currentKey) {
+        return parents;
+      }
+      if (item.children) {
+        const result = findParentKeys(item.children, currentKey, [...parents, item.key]);
+        if (result) {
+          return result;
+        }
+      }
+    }
+    return null;
+  };
+
+  const defaultOpenKeys = findParentKeys(items, currentURL) || [];
+
   const getLevelKeys = (items1) => {
     const key = {};
     const func = (items2, level = 1) => {
@@ -135,9 +102,10 @@ function Sidebar({ collapsed, setCollapsed }) {
     func(items1);
     return key;
   };
+
   const levelKeys = getLevelKeys(items);
 
-  const [stateOpenKeys, setStateOpenKeys] = useState(['2', '23']);
+  const [stateOpenKeys, setStateOpenKeys] = useState(defaultOpenKeys);
   const onOpenChange = (openKeys) => {
     const currentOpenKey = openKeys.find((key) => stateOpenKeys.indexOf(key) === -1);
     // open
@@ -158,14 +126,18 @@ function Sidebar({ collapsed, setCollapsed }) {
     }
   };
 
+  const hanldeOnlick = () => {
+    setCollapsed(!collapsed);
+  };
+
   return (
     <Sider
-      collapsible
+      theme="light"
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
       style={{
         overflow: 'auto',
-        height: '100vh',
+        height: '100%',
         position: 'fixed',
         left: 0,
         top: 0,
@@ -173,16 +145,25 @@ function Sidebar({ collapsed, setCollapsed }) {
         zIndex: 1000,
       }}
     >
-      <div className="demo-logo-vertical" />
+      <div style={{ margin: collapsed ? 10 : 30, transition: 'margin 0.7s ease' }} className="demo-logo">
+        <Image alt="logo" src="/images/logo.png" />
+      </div>
       <Menu
-        defaultSelectedKeys={['1']}
-        defaultOpenKeys={['1']}
+        defaultSelectedKeys={[defaultSelectedKey]}
+        defaultOpenKeys={defaultOpenKeys}
         mode="inline"
-        theme="dark"
+        theme="light"
         openKeys={stateOpenKeys}
         onOpenChange={onOpenChange}
         items={items}
       />
+      <Row>
+        <Col span={24}>
+          <Flex justify={'center'} align={'center'}>
+            <Button type="primary" onClick={hanldeOnlick} icon={collapsed ? <RightOutlined /> : <LeftOutlined />} />
+          </Flex>
+        </Col>
+      </Row>
     </Sider>
   );
 }

@@ -1,45 +1,43 @@
 import React, { useState } from 'react';
-import { Breadcrumb, Layout, theme } from 'antd';
+import { Layout, theme } from 'antd';
+import { useLocation } from 'react-router-dom';
+
 import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function DefaultLayout({ children }) {
-  const { Header, Content, Footer } = Layout;
+  const { Content } = Layout;
+  const location = useLocation();
 
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
   const [collapsed, setCollapsed] = useState(false);
+  const currentURL = location.pathname === '/' ? 'home' : location.pathname.slice(1);
 
   return (
     <Layout
       style={{
         minHeight: '100vh',
+        maxWidth: '100%',
+        overflow: 'hidden',
       }}
     >
-      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} currentURL={currentURL} />
       <Layout
         style={{
           marginLeft: collapsed ? 80 : 200,
           transition: 'margin-left 0.39s ease',
         }}
       >
-        <Header
-          style={{
-            padding: 0,
-            background: colorBgContainer,
-          }}
-        />
+        <Header />
         <Content
           style={{
-            margin: '0 16px',
+            margin: '10px 5px',
+            minWidth: 135,
           }}
         >
-          <Breadcrumb
-            style={{
-              margin: '16px 0',
-            }}
-            items={[{ title: 'user' }, { title: 'me' }]}
-          ></Breadcrumb>
           <div
             style={{
               padding: 24,
@@ -51,13 +49,7 @@ function DefaultLayout({ children }) {
             {children}
           </div>
         </Content>
-        <Footer
-          style={{
-            textAlign: 'center',
-          }}
-        >
-          Ant Design ©{new Date().getFullYear()} Created by Ant UED
-        </Footer>
+        <Footer />
       </Layout>
     </Layout>
   );
