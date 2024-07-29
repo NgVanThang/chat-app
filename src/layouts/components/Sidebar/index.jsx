@@ -6,13 +6,14 @@ import {
   ProductOutlined,
   TableOutlined,
   UngroupOutlined,
+  DragOutlined,
+  PlayCircleOutlined,
 } from '@ant-design/icons';
 import { Layout, Menu, Image, Button, Col, Row, Flex } from 'antd';
 import { Link } from 'react-router-dom';
 
-function Sidebar({ collapsed, setCollapsed, currentURL }) {
+function SidebarComponent({ collapsed, setCollapsed, currentURL }) {
   const { Sider } = Layout;
-
   const items = [
     {
       key: 'home',
@@ -20,9 +21,19 @@ function Sidebar({ collapsed, setCollapsed, currentURL }) {
       label: <Link to="/">Trang chủ</Link>,
     },
     {
+      key: 'play',
+      icon: <PlayCircleOutlined />,
+      label: <Link to="/play">Trò chơi</Link>,
+    },
+    {
       key: 'table',
       icon: <TableOutlined />,
       label: <Link to="/table">Bảng</Link>,
+    },
+    {
+      key: 'flow',
+      icon: <DragOutlined />,
+      label: <Link to="/flow">Kéo thả</Link>,
     },
     {
       key: 'grp1',
@@ -168,4 +179,4 @@ function Sidebar({ collapsed, setCollapsed, currentURL }) {
   );
 }
 
-export default Sidebar;
+export default SidebarComponent;

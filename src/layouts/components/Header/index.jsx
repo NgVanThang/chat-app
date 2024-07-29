@@ -1,7 +1,7 @@
 import { Layout, theme } from 'antd';
 import { Input } from 'antd';
 
-function Header() {
+function HeaderComponent() {
   const onSearch = (value, _e, info) => console.log(info?.source, value);
   const { Header } = Layout;
   const {
@@ -27,4 +27,4 @@ function Header() {
   );
 }
 
-export default Header;
+export default HeaderComponent;

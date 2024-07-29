@@ -1,6 +1,6 @@
 import { Layout } from 'antd';
 
-function Footer() {
+function FooterComponent() {
   const { Footer } = Layout;
   return (
     <>
@@ -9,4 +9,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default FooterComponent;

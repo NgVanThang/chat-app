@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Layout, theme } from 'antd';
 import { useLocation } from 'react-router-dom';
 
-import Sidebar from '../components/Sidebar';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { SidebarComponent, HeaderComponent, FooterComponent, DrawerComponent } from '../components';
 
 function DefaultLayout({ children }) {
   const { Content } = Layout;
@@ -24,14 +22,14 @@ function DefaultLayout({ children }) {
         overflow: 'hidden',
       }}
     >
-      <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} currentURL={currentURL} />
+      <SidebarComponent collapsed={collapsed} setCollapsed={setCollapsed} currentURL={currentURL} />
       <Layout
         style={{
           marginLeft: collapsed ? 80 : 200,
           transition: 'margin-left 0.39s ease',
         }}
       >
-        <Header />
+        <HeaderComponent />
         <Content
           style={{
             margin: '10px 5px',
@@ -49,7 +47,8 @@ function DefaultLayout({ children }) {
             {children}
           </div>
         </Content>
-        <Footer />
+        <FooterComponent />
+        <DrawerComponent />
       </Layout>
     </Layout>
   );

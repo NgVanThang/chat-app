@@ -1,7 +1,9 @@
 import React from 'react';
 import { Table } from 'antd';
 
-const StickyTable = () => {
+const StickyTable = ({ cloumns, data }) => {
+  {
+    /*
   const columns = [
     {
       title: 'Full Name',
@@ -98,9 +100,11 @@ const StickyTable = () => {
       address: `Item ${i}`,
     });
   }
+*/
+  }
   return (
     <Table
-      columns={columns}
+      columns={cloumns}
       dataSource={data}
       scroll={{
         x: 1500,
