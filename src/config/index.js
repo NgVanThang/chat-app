@@ -1,7 +1,4 @@
-import routes from './routes';
+import * as routes from './routes';
+import * as firebase from './firebase';
 
-const config = {
-  routes,
-};
-
-export default config;
+export { routes, firebase };

@@ -1,14 +1,5 @@
 import React, { useState } from 'react';
-import {
-  HomeOutlined,
-  RightOutlined,
-  LeftOutlined,
-  ProductOutlined,
-  TableOutlined,
-  UngroupOutlined,
-  DragOutlined,
-  PlayCircleOutlined,
-} from '@ant-design/icons';
+import { HomeOutlined, RightOutlined, LeftOutlined, UngroupOutlined } from '@ant-design/icons';
 import { Layout, Menu, Image, Button, Col, Row, Flex } from 'antd';
 import { Link } from 'react-router-dom';
 
@@ -19,21 +10,6 @@ function SidebarComponent({ collapsed, setCollapsed, currentURL }) {
       key: 'home',
       icon: <HomeOutlined />,
       label: <Link to="/">Trang chủ</Link>,
-    },
-    {
-      key: 'play',
-      icon: <PlayCircleOutlined />,
-      label: <Link to="/play">Trò chơi</Link>,
-    },
-    {
-      key: 'table',
-      icon: <TableOutlined />,
-      label: <Link to="/table">Bảng</Link>,
-    },
-    {
-      key: 'flow',
-      icon: <DragOutlined />,
-      label: <Link to="/flow">Kéo thả</Link>,
     },
     {
       key: 'grp1',
@@ -49,31 +25,6 @@ function SidebarComponent({ collapsed, setCollapsed, currentURL }) {
               label: <Link to="/profile">Trang cá nhân</Link>,
             },
           ],
-        },
-        {
-          key: 'bb',
-          label: 'Thêm',
-          children: [
-            {
-              key: 'following',
-              label: <Link to="/following">Theo dõi</Link>,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      key: 'product-list',
-      label: 'Sản phẩm',
-      icon: <ProductOutlined />,
-      children: [
-        {
-          key: 'product',
-          label: <Link to="/product">Danh sách</Link>,
-        },
-        {
-          key: 'product/create',
-          label: <Link to="/product/create">Thêm sản phẩm</Link>,
         },
       ],
     },
