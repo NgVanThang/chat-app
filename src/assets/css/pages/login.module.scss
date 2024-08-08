@@ -1,0 +1,137 @@
+$color_1: #ffffff;
+$color_2: #e5e5e5;
+$color_3: #eaf0fb;
+$font-family_1: 'Poppins', sans-serif;
+$background-color_1: #080710;
+$background-color_2: rgba(255, 255, 255, 0.13);
+$background-color_3: rgba(255, 255, 255, 0.07);
+$background-color_4: rgba(255, 255, 255, 0.27);
+$background-color_5: rgba(255, 255, 255, 0.47);
+
+@import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css';
+@import 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap';
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.body {
+  width: 100vw;
+  height: 100vh;
+  background-color: $background-color_1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.background {
+  width: 100%;
+  max-width: 430px;
+  height: 520px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  .shape {
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    border-radius: 50%;
+  }
+}
+
+.shape {
+  &:first-child {
+    background: linear-gradient(#1845ad, #23a2f6);
+    left: -80px;
+    top: -80px;
+  }
+  &:last-child {
+    background: linear-gradient(to right, #ff512f, #f09819);
+    right: -30px;
+    bottom: -80px;
+  }
+}
+
+.form {
+  height: auto;
+  width: 100%;
+  max-width: 400px;
+  background-color: $background-color_2;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+  padding: 50px 35px;
+  * {
+    font-family: $font-family_1;
+    color: $color_1;
+    letter-spacing: 0.5px;
+    outline: none;
+    border: none;
+  }
+  h3 {
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 42px;
+    text-align: center;
+  }
+}
+
+label {
+  display: block;
+  margin-top: 30px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.social {
+  margin-top: 30px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
+  div {
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: $background-color_4;
+    color: $color_3;
+    text-align: center;
+    &:hover {
+      background-color: $background-color_5;
+    }
+  }
+
+  .fb {
+    margin-left: 0;
+  }
+
+  span {
+    vertical-align: middle;
+  }
+
+  svg {
+    margin-right: 4px;
+    font-size: 20px;
+  }
+
+  button {
+    width: 100%;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: $background-color_4;
+    color: $color_3;
+    text-align: center;
+    cursor: pointer;
+  }
+}
