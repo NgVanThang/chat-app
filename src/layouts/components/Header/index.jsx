@@ -1,14 +1,16 @@
 import { Layout, theme } from 'antd';
-import { Input } from 'antd';
+import { signOutUser } from '~/services/authService';
 
 function HeaderComponent() {
-  const onSearch = (value, _e, info) => console.log(info?.source, value);
   const { Header } = Layout;
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  const { Search } = Input;
+  const hanldeSignOut = () => {
+    signOutUser();
+  };
+
   return (
     <Header
       style={{
@@ -16,13 +18,7 @@ function HeaderComponent() {
         background: colorBgContainer,
       }}
     >
-      <Search
-        placeholder="input search text"
-        onSearch={onSearch}
-        style={{
-          width: 200,
-        }}
-      />
+      <button onClick={hanldeSignOut}>Đăng xuất</button>
     </Header>
   );
 }

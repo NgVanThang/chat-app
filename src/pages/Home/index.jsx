@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-function Home() {
+function HomePage() {
   const items = [
     {
       id: 1,
@@ -43,7 +43,14 @@ function Home() {
       }
     });
   };
-  console.log(checkboxChecked);
+  //console.log('render'); // render mỗi lần mỗi lần component được inmount hoặc re-render
+  useEffect(() => {
+    //console.log(count);
+  }, [count]); //chạy mỗi lần giá trị của count bị thay đổi
+  useEffect(() => {
+    // console.log('init render');
+  }, []); // chỉ chạy một lần duy nhất khi được inmout
+
   return (
     <>
       <div>
@@ -81,4 +88,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;
