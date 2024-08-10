@@ -4,7 +4,6 @@ const publicRoute = [
   { path: '/login', component: LoginPage, layout: null },
 
   { path: '/*', component: NotFoundPage, layout: null },
-  { path: '/register', component: RegisterPage, layout: null },
 ];
 
 const privateRoute = [
@@ -12,6 +11,7 @@ const privateRoute = [
   { path: '/profile', component: ProfilePage },
 
   { path: '/chat', component: ChatPage, layout: null },
+  { path: '/register', component: RegisterPage, layout: null },
 ];
 
 export { publicRoute, privateRoute };
