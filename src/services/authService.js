@@ -26,6 +26,8 @@ const signInWithGoogle = async () => {
         //  keywords: generateKeywords(user.displayName?.toLowerCase()),
       });
     }
+
+    localStorage.setItem('isNewUser', isNewUser);
     return { user, isNewUser };
   } catch (error) {
     return false;

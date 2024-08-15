@@ -1,38 +1,28 @@
-import { useContext } from 'react';
 import { Layout, theme } from 'antd';
-
-import { HeaderComponent } from '../components';
-import { AuthContext } from '~/utils/authProvider';
+import { HeaderComponent, FooterComponent } from '../components';
 
 function DefaultLayout({ children }) {
-  const { user } = useContext(AuthContext);
-  if (!user) {
-    return;
-  }
   const { Content } = Layout;
-
   const {
-    token: { colorBgContainer, borderRadiusLG },
+    token: { customBackgroundColor },
   } = theme.useToken();
+
   return (
     <Layout>
       <HeaderComponent />
-      <Content
-        style={{
-          padding: '0 48px',
-        }}
-      >
+      <Content>
         <div
           style={{
-            background: colorBgContainer,
+            background: customBackgroundColor,
             minHeight: '100vh',
+            height: 'fit-content',
             padding: 24,
-            borderRadius: borderRadiusLG,
           }}
         >
           {children}
         </div>
       </Content>
+      <FooterComponent />
     </Layout>
   );
 }

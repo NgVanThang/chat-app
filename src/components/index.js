@@ -1,2 +1,1 @@
-export * from './Table';
-export * from './CustomEdge';
+export { default as ServiceComponent } from './Service';

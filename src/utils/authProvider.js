@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState, createContext } from 'react';
+import { useEffect, useLayoutEffect, useState, createContext, useContext } from 'react';
 import { matchPath, useLocation, useNavigate } from 'react-router-dom';
 import { routes, firebase } from '~/config';
 import { LoadingPage } from '~/pages/_Static';
@@ -31,9 +31,14 @@ function AuthProvider({ children }) {
     } else {
       if (privateRoute.some((route) => matchPath(route.path, location.pathname))) navigate('/login');
     }
-  }, [isLoading, user, location.pathname, navigate, privateRoute]);
+  }, [isLoading, user, location.pathname, navigate, privateRoute, auth]);
+
+  if (!user && privateRoute.some((route) => matchPath(route.path, location.pathname))) return <LoadingPage />;
 
   return isLoading ? <LoadingPage /> : <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 }
 
+export const UserInfo = () => {
+  return useContext(AuthContext);
+};
 export default AuthProvider;
