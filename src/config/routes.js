@@ -10,7 +10,7 @@ const privateRoute = [
   { path: '/', component: HomePage },
   { path: '/profile', component: ProfilePage },
 
-  { path: '/chat', component: ChatPage, layout: null },
+  { path: '/chat', component: ChatPage },
   { path: '/register', component: RegisterPage, layout: null },
 ];
 

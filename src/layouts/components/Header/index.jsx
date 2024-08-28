@@ -90,13 +90,17 @@ const HeaderComponent = ({ ...props }) => {
     token: { customBackgroundHeader, customColorPrimary },
   } = theme.useToken();
 
+  const style = {
+    color: 'inherit',
+  };
+
   return (
     <Header
       style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0 16px',
+        padding: '0 10px',
         backgroundColor: customBackgroundHeader,
         position: 'sticky',
         top: 0,
@@ -104,7 +108,7 @@ const HeaderComponent = ({ ...props }) => {
         zIndex: 1000,
       }}
     >
-      <Space style={{ fontSize: 24 }}>
+      <Space>
         <Link to="/">
           <img className="logo" src="logo192.png" alt="logo" />
         </Link>
@@ -116,7 +120,7 @@ const HeaderComponent = ({ ...props }) => {
           alignItems: 'center',
         }}
       >
-        <Text strong>
+        <Text style={style} strong>
           {getLanguageValue(languageSelected, 'xinChao')} {displayName}
         </Text>
         <Dropdown

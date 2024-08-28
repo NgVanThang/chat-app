@@ -14,7 +14,7 @@ function ConfigProviderTheme({ children }) {
   );
 
   const { getLanguageValue } = language;
-  const { lang, theme } = configLayout;
+  const { lang, theme: themeMode } = configLayout;
 
   const languageSelected = language.languages[lang];
 
@@ -26,17 +26,33 @@ function ConfigProviderTheme({ children }) {
     token: {
       customBackgroundColor: '#ffffff',
       customBackgroundHeader: '#fafafa',
+      customBackgroundFooter: '#f5f5f5',
 
       customColorPrimary: '#000000',
+      colorBgElevated: '#ffffff',
+      colorText: '#333333', // Màu chữ
+
+      borderRadius: 10,
+      borderColor: 'red', // Màu đường viền tùy chỉnh
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     },
   };
 
   const customThemeDark = {
     token: {
+      colorBgContainer: '#141414',
       customBackgroundColor: '#262626',
       customBackgroundHeader: '#141414',
+      customBackgroundFooter: '#141414',
 
-      customColorPrimary: '#ffffff',
+      customColorPrimary: '#fff',
+      colorBgElevated: '#1f1f1f',
+      colorText: '#ffffff', // Màu chữ
+      colorTextDisabled: '#727272',
+
+      borderRadius: 10,
+      borderColor: 'red', // Màu đường viền tùy chỉnh
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
     },
   };
 
@@ -44,7 +60,7 @@ function ConfigProviderTheme({ children }) {
     <ConfigLayout.Provider
       value={{ configLayout, setConfigLayout, languageOption: { languageSelected, getLanguageValue } }}
     >
-      <ConfigProvider theme={theme === 'light' ? customThemeLight : customThemeDark}>{children}</ConfigProvider>
+      <ConfigProvider theme={themeMode === 'light' ? customThemeLight : customThemeDark}>{children}</ConfigProvider>
     </ConfigLayout.Provider>
   );
 }

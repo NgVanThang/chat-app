@@ -1,0 +1,15 @@
+.custom-row {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.custom-row > .ant-col {
+  display: flex;
+  justify-content: center; /* Căn giữa item */
+}
+
+@media (max-width: 767px) {
+  .custom-row {
+    justify-content: start !important; /* Bắt đầu từ trái khi xuống dòng */
+  }
+}
