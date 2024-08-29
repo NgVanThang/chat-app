@@ -35,6 +35,9 @@ function ConfigProviderTheme({ children }) {
       borderRadius: 10,
       borderColor: 'red', // Màu đường viền tùy chỉnh
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+
+      customBackgroundChat: '#f3f1f1',
+      customBackgroundButton: 'linear-gradient(135deg, #2c3e50, #34495e)',
     },
   };
 
@@ -45,14 +48,19 @@ function ConfigProviderTheme({ children }) {
       customBackgroundHeader: '#141414',
       customBackgroundFooter: '#141414',
 
-      customColorPrimary: '#fff',
+      customColorPrimary: '#ffffff',
       colorBgElevated: '#1f1f1f',
       colorText: '#ffffff', // Màu chữ
       colorTextDisabled: '#727272',
 
+      colorTextBase: '#ffffff',
+
       borderRadius: 10,
       borderColor: 'red', // Màu đường viền tùy chỉnh
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+
+      customBackgroundChat: '#41a3ff',
+      customBackgroundButton: 'red',
     },
   };
 

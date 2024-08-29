@@ -15,3 +15,13 @@ button {
   height: 50px;
   vertical-align: middle;
 }
+
+.item-hide-scroll {
+  overflow: auto; /* Cho phép cuộn nội dung */
+  scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+  -ms-overflow-style: none; /* Ẩn thanh cuộn trên Internet Explorer và Edge */
+}
+
+.item-hide-scroll::-webkit-scrollbar {
+  display: none; /* Ẩn thanh cuộn trên Chrome, Safari và Opera */
+}

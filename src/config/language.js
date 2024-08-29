@@ -17,6 +17,8 @@ const languages = {
     mangXaHoi: 'Mạng xã hội',
     dong: 'Đóng',
     quetMaDeLienHe: 'Quét mã để liên hệ',
+    nhapNoiDungTinNhan: 'Nhập nội dung tin nhắn...',
+    khongCoTinNhan: 'Không có tin nhắn',
   },
   en: {
     settings: {
@@ -36,6 +38,8 @@ const languages = {
     mangXaHoi: 'Social network',
     dong: 'Close',
     quetMaDeLienHe: 'Scan code to contact',
+    nhapNoiDungTinNhan: 'Enter your message...',
+    khongCoTinNhan: 'No message',
   },
 };
 

@@ -1,0 +1,58 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.chat-card {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  min-height: calc(100vh - 10rem);
+  max-height: calc(100vh - 10rem);
+  overflow: auto; /* Cho phép cuộn nội dung */
+  scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
+  -ms-overflow-style: none; /* Ẩn thanh cuộn trên Internet Explorer và Edge */
+}
+
+.chat-card::-webkit-scrollbar {
+  display: none; /* Ẩn thanh cuộn trên Chrome, Safari và Opera */
+}
+
+.chat-input-container {
+  display: flex;
+  gap: 10px;
+
+  & input::placeholder {
+    color: gray;
+  }
+}
+
+.send-button {
+  background: linear-gradient(135deg, #2c3e50, #34495e); // Gradient background
+  color: #ffffff; // White text color
+  border: none;
+  padding: 10px 16px;
+  font-size: 16px;
+  border-radius: 8px; // Rounded corners
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Soft shadow
+  transition: all 0.3s ease; // Smooth transition for hover and active states
+
+  &:hover {
+    background: linear-gradient(135deg, #34495e, #2c3e50); // Reverse gradient on hover
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); // Larger shadow on hover
+    transform: translateY(-2px); // Lift effect on hover
+  }
+
+  &:active {
+    background: linear-gradient(135deg, #1f2e3b, #2c3e50); // Darker gradient when active
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); // Slightly reduce shadow on active
+    transform: translateY(0); // Return to original position
+  }
+
+  &:focus {
+    outline: none; // Remove default outline
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3); // Add custom focus ring
+  }
+}
