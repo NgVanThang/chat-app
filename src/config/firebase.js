@@ -10,7 +10,7 @@ import {
   getAdditionalUserInfo,
 } from 'firebase/auth';
 import { getFirestore, addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { getDatabase, ref, push, onValue } from 'firebase/database';
+import { getDatabase, ref, push, onValue, serverTimestamp as realtimeTimestamp } from 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -49,4 +49,5 @@ export {
   ref,
   push,
   onValue,
+  realtimeTimestamp,
 };

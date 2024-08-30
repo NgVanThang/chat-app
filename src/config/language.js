@@ -19,6 +19,10 @@ const languages = {
     quetMaDeLienHe: 'Quét mã để liên hệ',
     nhapNoiDungTinNhan: 'Nhập nội dung tin nhắn...',
     khongCoTinNhan: 'Không có tin nhắn',
+    ngayTruoc: 'ngày trước',
+    gioTruoc: 'giờ trước',
+    phutTruoc: 'phút trước',
+    vaiGiayTruoc: 'Vài giây trước',
   },
   en: {
     settings: {
@@ -40,6 +44,10 @@ const languages = {
     quetMaDeLienHe: 'Scan code to contact',
     nhapNoiDungTinNhan: 'Enter your message...',
     khongCoTinNhan: 'No message',
+    ngayTruoc: 'days ago',
+    gioTruoc: 'hours ago',
+    phutTruoc: 'minutes ago',
+    vaiGiayTruoc: 'A few seconds ago',
   },
 };
 

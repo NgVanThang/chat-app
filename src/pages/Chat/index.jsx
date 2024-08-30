@@ -29,7 +29,7 @@ const ChatPage = () => {
     languageOption: { languageSelected, getLanguageValue },
   } = GetConfigLayout();
 
-  const { realtimeDatabase, ref, onValue, push, serverTimestamp } = firebase;
+  const { realtimeDatabase, ref, onValue, push, realtimeTimestamp } = firebase;
 
   useEffect(() => {
     const messagesRef = ref(realtimeDatabase, 'messages');
@@ -50,8 +50,8 @@ const ChatPage = () => {
       push(ref(realtimeDatabase, 'messages'), {
         uid: uid,
         avatar: photoURL,
-        name: displayName, // User name
-        time: serverTimestamp(), // Current time
+        name: displayName,
+        time: realtimeTimestamp(),
         message: inputMessage,
       });
 
@@ -85,7 +85,13 @@ const ChatPage = () => {
               }}
               dataSource={messages}
               renderItem={(msg) => (
-                <MessageComponent key={msg.id} avatar={msg.avatar} name={msg.name} time={12} message={msg.message} />
+                <MessageComponent
+                  key={msg.id}
+                  avatar={msg.avatar}
+                  name={msg.name}
+                  time={msg.time}
+                  message={msg.message}
+                />
               )}
             />
             <div ref={messagesEndRef} />

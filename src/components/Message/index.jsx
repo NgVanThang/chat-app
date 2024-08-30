@@ -1,5 +1,7 @@
 import React from 'react';
 import { Avatar, theme } from 'antd';
+
+import { useTime } from '~/hooks';
 import style from './style.module.scss';
 
 const MessageComponent = ({ avatar, name, time, message }) => {
@@ -21,7 +23,7 @@ const MessageComponent = ({ avatar, name, time, message }) => {
           >
             {message}
           </div>
-          <span className={style['message-time']}>{time}</span>
+          <span className={style['message-time']}>{useTime(time)}</span>
         </div>
       </div>
     </div>
