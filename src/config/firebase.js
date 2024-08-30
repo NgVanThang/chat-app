@@ -10,11 +10,13 @@ import {
   getAdditionalUserInfo,
 } from 'firebase/auth';
 import { getFirestore, addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { getDatabase, ref, push, onValue } from 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
   apiKey: 'AIzaSyAtOo1aUDRn7bQ5hVXJ62ivJY4yHY0VUZA',
   authDomain: 'chat-app-de536.firebaseapp.com',
+  databaseURL: 'https://chat-app-de536-default-rtdb.asia-southeast1.firebasedatabase.app',
   projectId: 'chat-app-de536',
   storageBucket: 'chat-app-de536.appspot.com',
   messagingSenderId: '1041528717244',
@@ -29,6 +31,7 @@ const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
 const facebookProvider = new FacebookAuthProvider();
 const db = getFirestore(app);
+const realtimeDatabase = getDatabase(app);
 // Export Firebase services
 export {
   analytics,
@@ -42,4 +45,8 @@ export {
   addDoc,
   collection,
   serverTimestamp,
+  realtimeDatabase,
+  ref,
+  push,
+  onValue,
 };

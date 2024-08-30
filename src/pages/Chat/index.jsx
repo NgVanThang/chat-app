@@ -5,6 +5,8 @@ import { SendOutlined } from '@ant-design/icons';
 import { MessageIcon } from '~/assets/icons';
 import { MessageComponent } from '~/components';
 import { GetConfigLayout } from '~/utils/configProvider';
+import { UserInfo } from '~/utils/authProvider';
+import { firebase } from '~/config';
 
 import style from './style.module.scss';
 
@@ -20,20 +22,40 @@ const ChatPage = () => {
   } = theme.useToken();
 
   const {
+    user: { displayName, photoURL, uid },
+  } = UserInfo();
+
+  const {
     languageOption: { languageSelected, getLanguageValue },
   } = GetConfigLayout();
 
+  const { realtimeDatabase, ref, onValue, push, serverTimestamp } = firebase;
+
+  useEffect(() => {
+    const messagesRef = ref(realtimeDatabase, 'messages');
+    onValue(messagesRef, (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        const formattedMessages = Object.keys(data).map((key) => ({
+          ...data[key],
+          id: key,
+        }));
+        setMessages(formattedMessages);
+      }
+    });
+  }, [realtimeDatabase, ref, onValue]);
+
   const handleSendMessage = () => {
     if (inputMessage.trim()) {
-      const newMessage = {
-        id: messages.length,
-        avatar: 'https://via.placeholder.com/40', // Avatar URL
-        name: 'User', // User name
-        time: new Date().toLocaleTimeString(), // Current time
+      push(ref(realtimeDatabase, 'messages'), {
+        uid: uid,
+        avatar: photoURL,
+        name: displayName, // User name
+        time: serverTimestamp(), // Current time
         message: inputMessage,
-      };
-      setMessages([...messages, newMessage]);
-      setInputMessage(''); // Clear input after sending message
+      });
+
+      setInputMessage('');
     }
   };
 
@@ -62,14 +84,8 @@ const ChatPage = () => {
                 ),
               }}
               dataSource={messages}
-              renderItem={(msg, index) => (
-                <MessageComponent
-                  key={index}
-                  avatar={msg.avatar}
-                  name={msg.name}
-                  time={msg.time}
-                  message={msg.message}
-                />
+              renderItem={(msg) => (
+                <MessageComponent key={msg.id} avatar={msg.avatar} name={msg.name} time={12} message={msg.message} />
               )}
             />
             <div ref={messagesEndRef} />
