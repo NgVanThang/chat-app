@@ -23,6 +23,7 @@ const languages = {
     gioTruoc: 'giờ trước',
     phutTruoc: 'phút trước',
     vaiGiayTruoc: 'Vài giây trước',
+    duongDan: '[LIÊN KẾT]',
   },
   en: {
     settings: {
@@ -48,6 +49,7 @@ const languages = {
     gioTruoc: 'hours ago',
     phutTruoc: 'minutes ago',
     vaiGiayTruoc: 'A few seconds ago',
+    duongDan: '[LINK]',
   },
 };
 

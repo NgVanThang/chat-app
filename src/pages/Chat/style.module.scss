@@ -13,6 +13,34 @@
   overflow: auto; /* Cho phép cuộn nội dung */
   scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
   -ms-overflow-style: none; /* Ẩn thanh cuộn trên Internet Explorer và Edge */
+  position: relative;
+
+  .button-to-bottom-wrapper {
+    position: sticky;
+    bottom: 0; // Keeps the wrapper element at the bottom of the chat-card
+    display: flex;
+    justify-content: flex-end; // Aligns the button to the right
+  }
+
+  .button-to-bottom {
+    position: absolute;
+    bottom: 20px; // 20px from the bottom of the parent element (chat-card)
+    right: 5px; // Adjust for right margin
+    background-color: #c9c9c9;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 0.7rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 10; // Keeps the button on top
+
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
 }
 
 .chat-card::-webkit-scrollbar {
