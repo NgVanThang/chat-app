@@ -55,7 +55,7 @@ function FooterComponent() {
             items={[
               {
                 icon: <MailOutlined />,
-                label: <a mailto="contact.thangnguyen2003@gmail.com">contact.thangnguyen2003@gmail.com</a>,
+                label: <a href="mailto:contact.thangnguyen2003@gmail.com">contact.thangnguyen2003@gmail.com</a>,
               },
               {
                 icon: <PhoneOutlined />,
@@ -80,7 +80,7 @@ function FooterComponent() {
               {
                 label: (
                   <a target="_blank" rel="noreferrer" href="https://vercel.com">
-                    Vervel
+                    Vercel
                   </a>
                 ),
               },
