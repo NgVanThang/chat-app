@@ -27,7 +27,18 @@ function AuthProvider({ children }) {
     if (isLoading) return;
 
     if (user) {
-      if (location.pathname === '/login') navigate('/');
+      if (location.pathname === '/login') {
+        navigate('/');
+      } else {
+        const isNewUser = localStorage.getItem('isNewUser') ?? false;
+
+        if (JSON.parse(isNewUser.toLowerCase())) {
+          localStorage.setItem('isNewUser', false);
+          navigate('/welcome');
+        } else {
+          if (location.pathname === '/welcome') navigate('/');
+        }
+      }
     } else {
       if (privateRoute.some((route) => matchPath(route.path, location.pathname))) navigate('/login');
     }

@@ -1,5 +1,5 @@
 import { HeaderOnly } from '~/layouts';
-import { HomePage, ProfilePage, NotFoundPage, LoginPage, ChatPage, RegisterPage } from '~/pages';
+import { HomePage, ProfilePage, NotFoundPage, LoginPage, ChatPage, RegisterPage, WelcomePage } from '~/pages';
 
 const publicRoute = [
   { path: '/login', component: LoginPage, layout: null },
@@ -12,6 +12,7 @@ const privateRoute = [
   { path: '/profile', component: ProfilePage },
 
   { path: '/chat', component: ChatPage, layout: HeaderOnly },
+  { path: '/welcome', component: WelcomePage },
   { path: '/register', component: RegisterPage, layout: null },
 ];
 

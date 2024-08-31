@@ -113,6 +113,7 @@ const ChatPage = () => {
                   name={msg.name}
                   time={msg.time}
                   message={msg.message}
+                  uid={msg.uid}
                 />
               )}
             />

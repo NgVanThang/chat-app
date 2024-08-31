@@ -1,15 +1,15 @@
 .chat-container {
   display: flex;
   flex-direction: column;
-  padding: 20px;
+  padding: 10px;
 }
 
 .chat-card {
   flex: 1;
   overflow-y: auto;
   margin-bottom: 20px;
-  min-height: calc(100vh - 10rem);
-  max-height: calc(100vh - 10rem);
+  min-height: calc(100vh - 9rem);
+  max-height: calc(100vh - 9rem);
   overflow: auto; /* Cho phép cuộn nội dung */
   scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
   -ms-overflow-style: none; /* Ẩn thanh cuộn trên Internet Explorer và Edge */

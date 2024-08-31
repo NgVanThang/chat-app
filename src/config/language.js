@@ -24,6 +24,8 @@ const languages = {
     phutTruoc: 'phút trước',
     vaiGiayTruoc: 'Vài giây trước',
     duongDan: '[LIÊN KẾT]',
+    chaoMungThanhVienMoi: 'Chào mừng thành viên mới',
+    tiepTuc: 'Tiếp tục',
   },
   en: {
     settings: {
@@ -50,6 +52,8 @@ const languages = {
     phutTruoc: 'minutes ago',
     vaiGiayTruoc: 'A few seconds ago',
     duongDan: '[LINK]',
+    chaoMungThanhVienMoi: 'Welcome new members',
+    tiepTuc: 'Next',
   },
 };
 

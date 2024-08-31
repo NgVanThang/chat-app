@@ -3,9 +3,10 @@ import { Avatar, theme } from 'antd';
 
 import { useTime } from '~/hooks';
 import { GetConfigLayout } from '~/utils/configProvider';
+import { UserInfo } from '~/utils/authProvider';
 import style from './style.module.scss';
 
-const MessageComponent = ({ avatar, name, time, message }) => {
+const MessageComponent = ({ avatar, name, time, message, uid }) => {
   const {
     token: { customColorPrimary, customBackgroundChat },
   } = theme.useToken();
@@ -13,6 +14,11 @@ const MessageComponent = ({ avatar, name, time, message }) => {
   const {
     languageOption: { languageSelected, getLanguageValue },
   } = GetConfigLayout();
+
+  const {
+    user: { uid: idUser },
+  } = UserInfo();
+  console.log(idUser === uid);
 
   function isValidUrl(string) {
     try {
@@ -23,6 +29,18 @@ const MessageComponent = ({ avatar, name, time, message }) => {
     }
   }
 
+  const formattedTime = useTime(time);
+
+  const messageContent = React.useMemo(
+    () => (isValidUrl(message) ? <a href={message}>{getLanguageValue(languageSelected, 'duongDan')}</a> : message),
+    [message, languageSelected, getLanguageValue],
+  );
+  const messageStyle = {
+    backgroundColor: customBackgroundChat,
+    color: customColorPrimary,
+    ...(idUser === uid && { border: '1px solid #ffbdbd' }),
+  };
+
   return (
     <div className={style['message-container']}>
       <Avatar src={avatar} alt={name} className={style['message-avatar']} />
@@ -31,13 +49,10 @@ const MessageComponent = ({ avatar, name, time, message }) => {
           <span className={style['message-name']}>{name}</span>
         </div>
         <div className={style['message-body']}>
-          <div
-            style={{ backgroundColor: customBackgroundChat, color: customColorPrimary }}
-            className={style['message-text']}
-          >
-            {isValidUrl(message) ? <a href={message}>{getLanguageValue(languageSelected, 'duongDan')}</a> : message}
+          <div style={messageStyle} className={style['message-text']}>
+            {messageContent}
           </div>
-          <span className={style['message-time']}>{useTime(time)}</span>
+          <span className={style['message-time']}>{formattedTime}</span>
         </div>
       </div>
     </div>

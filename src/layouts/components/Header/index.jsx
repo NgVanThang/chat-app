@@ -110,7 +110,7 @@ const HeaderComponent = ({ ...props }) => {
     >
       <Space>
         <Link to="/">
-          <img className="logo" src="logo192.png" alt="logo" />
+          <img className="logo" src="images/logo.png" alt="logo" />
         </Link>
       </Space>
 
