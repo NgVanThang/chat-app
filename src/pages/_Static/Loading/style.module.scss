@@ -1,0 +1,28 @@
+.container-loading {
+  display: grid;
+  height: 100vh;
+  justify-items: center;
+  align-content: space-around;
+
+  & .header-container {
+    flex: 1;
+    display: grid;
+    justify-items: center;
+
+    .logo {
+      width: 12rem;
+    }
+
+    .text-loading {
+      margin-top: 1rem;
+
+      .icon-loading {
+        margin-right: 0.3rem;
+      }
+    }
+  }
+
+  & .body-container {
+    flex: 2;
+  }
+}

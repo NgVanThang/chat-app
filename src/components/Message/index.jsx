@@ -18,7 +18,6 @@ const MessageComponent = ({ avatar, name, time, message, uid }) => {
   const {
     user: { uid: idUser },
   } = UserInfo();
-  console.log(idUser === uid);
 
   function isValidUrl(string) {
     try {

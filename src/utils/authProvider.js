@@ -30,11 +30,11 @@ function AuthProvider({ children }) {
       if (location.pathname === '/login') {
         navigate('/');
       } else {
-        const isNewUser = localStorage.getItem('isNewUser') ?? false;
+        const isNewUser = localStorage.getItem('isNewUser') ?? 'false';
 
         if (JSON.parse(isNewUser.toLowerCase())) {
-          localStorage.setItem('isNewUser', false);
           navigate('/welcome');
+          localStorage.setItem('isNewUser', 'false');
         } else {
           if (location.pathname === '/welcome') navigate('/');
         }
