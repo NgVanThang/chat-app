@@ -17,7 +17,7 @@ function LoadingPage() {
       <Col span={24}>
         <div className={style['container-loading']}>
           <div className={style['header-container']}>
-            <img className={style['logo']} alt="logo" src="images/logo.png" />
+            <img className={style['logo']} alt="logo" src="images/logo.svg" />
             <div style={{ color: customColorPrimary }} className={style['text-loading']}>
               <Spin className={style['icon-loading']} /> {getLanguageValue(languageSelected, 'dangTai')}
             </div>

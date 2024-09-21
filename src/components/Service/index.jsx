@@ -1,51 +1,13 @@
 import { Col, Divider, Row, Card } from 'antd';
-import { WechatOutlined } from '@ant-design/icons';
 
-import { GetConfigLayout } from '~/utils/configProvider';
 import style from './style.module.scss';
 import { Link } from 'react-router-dom';
 
 const { Meta } = Card;
-function ServiceComponent() {
-  const {
-    languageOption: { languageSelected, getLanguageValue },
-  } = GetConfigLayout();
-
-  const items = [
-    {
-      key: 1,
-      name: getLanguageValue(languageSelected, 'nhanTin'),
-      path: '/chat',
-      cover: <WechatOutlined />,
-      style: {
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-      },
-    },
-    {
-      key: 2,
-      name: getLanguageValue(languageSelected, 'nhanTin'),
-      path: '/chat',
-      cover: <WechatOutlined />,
-      style: {
-        width: '100%',
-      },
-    },
-    {
-      key: 3,
-      name: getLanguageValue(languageSelected, 'nhanTin'),
-      path: '/chat',
-      cover: <WechatOutlined />,
-      style: {
-        width: '100%',
-      },
-    },
-  ];
-
+function ServiceComponent({ title = '', items = [] }) {
   return (
     <>
-      <Divider orientation="center">{getLanguageValue(languageSelected, 'luaChonDichVu')}</Divider>
+      <Divider orientation="center">{title}</Divider>
       <Row gutter={[16, 16]} justify="center" align="center" className={style['custom-row']}>
         {items.map(({ key, name, path, style }) => {
           return (

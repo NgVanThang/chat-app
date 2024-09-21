@@ -12,3 +12,4 @@ export { default as ProfilePage } from './Profile';
 //PAGES
 export { default as ChatPage } from './Chat';
 export { default as WelcomePage } from './Welcome';
+export { default as DownloadPage } from './Download';

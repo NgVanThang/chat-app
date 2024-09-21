@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Matemasie&display=swap');
+
 .container-loading {
   display: grid;
   height: 100vh;
@@ -24,5 +26,12 @@
 
   & .body-container {
     flex: 2;
+
+    & > * {
+      font-family: 'Matemasie', sans-serif !important;
+      font-weight: 400;
+      font-style: normal;
+      font-size: clamp(1rem, 0.3rem + 3vw, 2rem);
+    }
   }
 }
