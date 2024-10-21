@@ -38,6 +38,7 @@ function ConfigProviderTheme({ children }) {
 
       customBackgroundChat: '#f3f1f1',
       customBackgroundButton: 'linear-gradient(135deg, #2c3e50, #34495e)',
+      customerBackgroundBoxInput: '#f3f1f1',
     },
   };
 
@@ -61,6 +62,7 @@ function ConfigProviderTheme({ children }) {
 
       customBackgroundChat: '#41a3ff',
       customBackgroundButton: 'red',
+      customerBackgroundBoxInput: '#5a5a5a',
     },
   };
 

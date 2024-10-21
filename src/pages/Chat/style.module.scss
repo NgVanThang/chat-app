@@ -7,7 +7,7 @@
 .chat-card {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 20px;
+  margin-bottom: 0.5rem;
   min-height: calc(100vh - 9rem);
   max-height: calc(100vh - 9rem);
   overflow: auto; /* Cho phép cuộn nội dung */
@@ -48,11 +48,26 @@
 }
 
 .chat-input-container {
+  background-color: #f3f1f1;
+  padding: 0.3rem;
+  border-radius: 20px 0 0 20px;
   display: flex;
   gap: 10px;
 
-  & input::placeholder {
-    color: gray;
+  input {
+    &::placeholder {
+      color: gray;
+    }
+
+    border: none;
+    background-color: transparent;
+
+    &:focus,
+    &:hover {
+      border: none !important;
+      box-shadow: none;
+      background-color: transparent;
+    }
   }
 }
 
@@ -66,6 +81,7 @@
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Soft shadow
   transition: all 0.3s ease; // Smooth transition for hover and active states
+  width: 8rem !important;
 
   &:hover {
     background: linear-gradient(135deg, #34495e, #2c3e50); // Reverse gradient on hover

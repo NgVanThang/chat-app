@@ -20,7 +20,7 @@ const ChatPage = () => {
   const chatCardref = useRef(null);
 
   const {
-    token: { customColorPrimary },
+    token: { customColorPrimary, customerBackgroundBoxInput },
   } = theme.useToken();
 
   const {
@@ -127,7 +127,7 @@ const ChatPage = () => {
             )}
           </div>
 
-          <div className={style['chat-input-container']}>
+          <div className={style['chat-input-container']} style={{ backgroundColor: customerBackgroundBoxInput }}>
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}
