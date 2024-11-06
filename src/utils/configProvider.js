@@ -60,7 +60,7 @@ function ConfigProviderTheme({ children }) {
       borderColor: 'red', // Màu đường viền tùy chỉnh
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
 
-      customBackgroundChat: '#41a3ff',
+      customBackgroundChat: '#3e3e3e',
       customBackgroundButton: 'red',
       customerBackgroundBoxInput: '#5a5a5a',
     },

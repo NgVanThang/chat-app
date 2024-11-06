@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Input, Button, Row, Col, List, Empty, theme } from 'antd';
-import { SendOutlined, DownOutlined } from '@ant-design/icons';
+import { Input, Button, Row, Col, List, Empty, theme, Dropdown, message, Popover } from 'antd';
+import { SendOutlined, DownOutlined, CloseOutlined } from '@ant-design/icons';
 
-import { MessageIcon } from '~/assets/icons';
+import { MessageIcon, ImageUploadIcon, PlusIcon } from '~/assets/icons';
 import { MessageComponent } from '~/components';
 import { GetConfigLayout } from '~/utils/configProvider';
 import { UserInfo } from '~/utils/authProvider';
@@ -14,6 +14,8 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [showButtonToDown, setShowButtonToDown] = useState(false);
+  const [imageSelect, setImageSelect] = useState(null);
+  const [messageApi, contextHolder] = message.useMessage(null);
 
   // Create a ref for the chat list
   const messagesEndRef = useRef(null);
@@ -31,6 +33,20 @@ const ChatPage = () => {
     languageOption: { languageSelected, getLanguageValue },
   } = GetConfigLayout();
 
+  const items = [
+    {
+      label: <span>{getLanguageValue(languageSelected, 'sapRaMat')}</span>,
+      key: '1',
+    },
+    {
+      type: 'divider',
+    },
+    {
+      label: <span>{getLanguageValue(languageSelected, 'sapRaMat')}</span>,
+      key: '3',
+    },
+  ];
+
   const { realtimeDatabase, ref, onValue, push, realtimeTimestamp } = firebase;
 
   useEffect(() => {
@@ -47,18 +63,57 @@ const ChatPage = () => {
     });
   }, [realtimeDatabase, ref, onValue]);
 
-  const handleSendMessage = () => {
-    if (inputMessage.trim()) {
-      push(ref(realtimeDatabase, 'messages'), {
-        uid: uid,
-        avatar: photoURL,
-        name: displayName,
-        time: realtimeTimestamp(),
-        message: inputMessage,
-      });
+  const handleChangeChoiceFile = (e) => {
+    const imageFile = e.target.files;
 
-      setInputMessage('');
+    console.log(e);
+
+    if (!imageFile) {
+      setImageSelect(null);
+      return;
     }
+    console.log(imageSelect);
+    setImageSelect([...imageFile]);
+    /*
+    if (imageFile.type.split('/')[0] !== 'image') {
+      messageApi.error(getLanguageValue(languageSelected, 'tepPhaiLaAnh'));
+      return;
+    }
+
+    if (imageFile.size > 5000000) {
+      messageApi.error(getLanguageValue(languageSelected, 'dungLuongToiDa'));
+      return;
+    }
+
+    const previewImage = URL.createObjectURL(imageFile);
+    imageFile['previewURL'] = previewImage;
+
+    setImageSelect(imageFile);
+    */
+  };
+
+  useEffect(() => {
+    return () => {
+      imageSelect && URL.revokeObjectURL(imageSelect.previewURL);
+    };
+  }, [imageSelect]);
+
+  const handleSendMessage = () => {
+    if (!inputMessage.trim()) {
+      messageApi.error('Tin nhắn không hợp lệ'); //getLanguageValue(languageSelected, 'dungLuongToiDa'));
+
+      return;
+    }
+
+    push(ref(realtimeDatabase, 'messages'), {
+      uid: uid,
+      avatar: photoURL,
+      name: displayName,
+      time: realtimeTimestamp(),
+      message: inputMessage,
+    });
+
+    setInputMessage('');
   };
 
   const calculatorPosition = () => {
@@ -92,6 +147,7 @@ const ChatPage = () => {
 
   return (
     <Row gutter={[16, 16]} justify="center" align="middle">
+      {contextHolder}
       <Col xs={24} sm={20} md={18} lg={16}>
         <div className={style['chat-container']}>
           <div className={style['chat-card']} ref={chatCardref} onScroll={handleScroll}>
@@ -117,6 +173,26 @@ const ChatPage = () => {
                 />
               )}
             />
+            {imageSelect && (
+              <div className={style['wapper-image-preview']}>
+                <div className={style['preview-body']}>
+                  <div className={style['card-image']}>
+                    <div className={style['image-container']}>
+                      <img
+                        alt="image-preview"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Siam_lilacpoint.jpg/589px-Siam_lilacpoint.jpg"
+                      />
+                    </div>
+                    <div className={style['button-container']}>
+                      <button>
+                        <CloseOutlined />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div ref={messagesEndRef} />
             {showButtonToDown && (
               <div className={style['button-to-bottom-wrapper']}>
@@ -128,6 +204,26 @@ const ChatPage = () => {
           </div>
 
           <div className={style['chat-input-container']} style={{ backgroundColor: customerBackgroundBoxInput }}>
+            <div className={style['wapper-input-file']}>
+              <Popover content={getLanguageValue(languageSelected, 'themLuaChon')}>
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                  trigger={['click']}
+                >
+                  <button>
+                    <PlusIcon />
+                  </button>
+                </Dropdown>
+              </Popover>
+              <Popover content={getLanguageValue(languageSelected, 'taiAnhLen')}>
+                <button className={style['button-choice-file']}>
+                  <input type="file" multiple title="" accept="image/*" onChange={handleChangeChoiceFile} />
+                  <ImageUploadIcon />
+                </button>
+              </Popover>
+            </div>
             <Input
               value={inputMessage}
               onChange={(e) => setInputMessage(e.target.value)}

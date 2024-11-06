@@ -26,6 +26,11 @@ const languages = {
     duongDan: '[LIÊN KẾT]',
     chaoMungThanhVienMoi: 'Chào mừng thành viên mới',
     tiepTuc: 'Tiếp tục',
+    sapRaMat: 'Sắp ra mắt',
+    tepPhaiLaAnh: 'Tệp đã chọn phải là ảnh',
+    dungLuongToiDa: 'Dung lượng tối đa của file là 5MB',
+    themLuaChon: 'Các lựa chọn khác',
+    taiAnhLen: 'Tải ảnh lên',
   },
   en: {
     settings: {
@@ -54,6 +59,11 @@ const languages = {
     duongDan: '[LINK]',
     chaoMungThanhVienMoi: 'Welcome new members',
     tiepTuc: 'Next',
+    sapRaMat: 'Coming soon',
+    tepPhaiLaAnh: 'The selected file must be an image',
+    dungLuongToiDa: 'Maximum file size is 5MB',
+    themLuaChon: 'More options',
+    taiAnhLen: 'Upload image',
   },
 };
 
