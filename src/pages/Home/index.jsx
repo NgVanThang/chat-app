@@ -1,6 +1,6 @@
 import { WechatOutlined } from '@ant-design/icons';
 
-import { GetConfigLayout } from '~/utils/configProvider';
+import { GetConfigLayout } from '~/context/configProvider';
 import { ServiceComponent } from '~/components';
 
 function HomePage() {

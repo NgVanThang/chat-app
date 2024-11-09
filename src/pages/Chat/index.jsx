@@ -4,8 +4,8 @@ import { SendOutlined, DownOutlined, CloseOutlined } from '@ant-design/icons';
 
 import { MessageIcon, ImageUploadIcon, PlusIcon } from '~/assets/icons';
 import { MessageComponent } from '~/components';
-import { GetConfigLayout } from '~/utils/configProvider';
-import { UserInfo } from '~/utils/authProvider';
+import { GetConfigLayout } from '~/context/configProvider';
+import { UserInfo } from '~/context/authProvider';
 import { firebase } from '~/config';
 
 import style from './style.module.scss';
@@ -14,7 +14,7 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
   const [showButtonToDown, setShowButtonToDown] = useState(false);
-  const [imageSelect, setImageSelect] = useState(null);
+  const [imageSelect, setImageSelect] = useState([]);
   const [messageApi, contextHolder] = message.useMessage(null);
 
   // Create a ref for the chat list
@@ -66,37 +66,44 @@ const ChatPage = () => {
   const handleChangeChoiceFile = (e) => {
     const imageFile = e.target.files;
 
-    console.log(e);
-
     if (!imageFile) {
-      setImageSelect(null);
-      return;
-    }
-    console.log(imageSelect);
-    setImageSelect([...imageFile]);
-    /*
-    if (imageFile.type.split('/')[0] !== 'image') {
-      messageApi.error(getLanguageValue(languageSelected, 'tepPhaiLaAnh'));
+      setImageSelect([]);
       return;
     }
 
-    if (imageFile.size > 5000000) {
-      messageApi.error(getLanguageValue(languageSelected, 'dungLuongToiDa'));
-      return;
-    }
-
-    const previewImage = URL.createObjectURL(imageFile);
-    imageFile['previewURL'] = previewImage;
-
-    setImageSelect(imageFile);
-    */
+    setImageSelect(createImagePreview(imageFile));
+    e.target.value = null;
   };
 
-  useEffect(() => {
-    return () => {
-      imageSelect && URL.revokeObjectURL(imageSelect.previewURL);
-    };
-  }, [imageSelect]);
+  const createImagePreview = (files) => {
+    const result = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+
+      if (file.type.split('/')[0] !== 'image') {
+        messageApi.error(getLanguageValue(languageSelected, 'tepPhaiLaAnh'));
+        continue;
+      }
+
+      if (file.size > 5000000) {
+        messageApi.error(getLanguageValue(languageSelected, 'dungLuongToiDa'));
+        continue;
+      }
+
+      result.push(URL.createObjectURL(file));
+    }
+    return result;
+  };
+
+  const hanldeRemoveImagePreview = (imagePreview) => {
+    const indexToRemove = imageSelect.indexOf(imagePreview);
+    if (typeof indexToRemove === 'number') {
+      setImageSelect(imageSelect.filter((_, index) => index !== indexToRemove));
+
+      URL.revokeObjectURL(imagePreview);
+    }
+  };
 
   const handleSendMessage = () => {
     if (!inputMessage.trim()) {
@@ -173,22 +180,23 @@ const ChatPage = () => {
                 />
               )}
             />
-            {imageSelect && (
+            {imageSelect && imageSelect.length > 0 && (
               <div className={style['wapper-image-preview']}>
                 <div className={style['preview-body']}>
-                  <div className={style['card-image']}>
-                    <div className={style['image-container']}>
-                      <img
-                        alt="image-preview"
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Siam_lilacpoint.jpg/589px-Siam_lilacpoint.jpg"
-                      />
-                    </div>
-                    <div className={style['button-container']}>
-                      <button>
-                        <CloseOutlined />
-                      </button>
-                    </div>
-                  </div>
+                  {imageSelect.map(function (dataImageUrl, index) {
+                    return (
+                      <div key={index} className={style['card-image']}>
+                        <div className={style['image-container']}>
+                          <img alt="image-preview" src={dataImageUrl} />
+                        </div>
+                        <div className={style['button-container']}>
+                          <button data-url={dataImageUrl} onClick={() => hanldeRemoveImagePreview(dataImageUrl)}>
+                            <CloseOutlined />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
             )}

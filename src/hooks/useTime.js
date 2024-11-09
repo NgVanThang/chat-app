@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { GetConfigLayout } from '~/utils/configProvider';
+import { GetConfigLayout } from '~/context/configProvider';
 
 const useTime = (time = new Date(), now = new Date()) => {
   const {

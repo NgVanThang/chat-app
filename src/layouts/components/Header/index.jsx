@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom';
 import { Layout, Avatar, Dropdown, Space, Typography, theme } from 'antd';
 import { LogoutOutlined, SunOutlined, MoonOutlined, TranslationOutlined, UserOutlined } from '@ant-design/icons';
 
-import { UserInfo } from '~/utils/authProvider';
+import { UserInfo } from '~/context/authProvider';
 import { signOutUser } from '~/services/authService';
 import { language } from '~/config';
-import { GetConfigLayout } from '~/utils/configProvider';
+import { GetConfigLayout } from '~/context/configProvider';
 const { Header } = Layout;
 
 const HeaderComponent = ({ ...props }) => {

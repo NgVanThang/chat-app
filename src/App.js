@@ -1,10 +1,10 @@
 import { Fragment } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import AuthProvider from './utils/authProvider';
+import AuthProvider from './context/authProvider';
 import { routes } from '~/config';
 import DefaultLayout from '~/layouts';
-import ConfigProviderTheme from '~/utils/configProvider';
+import ConfigProviderTheme from '~/context/configProvider';
 
 function App() {
   const { publicRoute, privateRoute } = routes;

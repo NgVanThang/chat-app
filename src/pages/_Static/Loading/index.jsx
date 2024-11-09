@@ -1,5 +1,5 @@
 import { Row, Col, theme, Spin } from 'antd';
-import { GetConfigLayout } from '~/utils/configProvider';
+import { GetConfigLayout } from '~/context/configProvider';
 
 import style from './style.module.scss';
 

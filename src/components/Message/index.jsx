@@ -2,8 +2,8 @@ import React from 'react';
 import { Avatar, theme } from 'antd';
 
 import { useTime } from '~/hooks';
-import { GetConfigLayout } from '~/utils/configProvider';
-import { UserInfo } from '~/utils/authProvider';
+import { GetConfigLayout } from '~/context/configProvider';
+import { UserInfo } from '~/context/authProvider';
 import style from './style.module.scss';
 
 const MessageComponent = ({ avatar, name, time, message, uid }) => {

@@ -3,7 +3,7 @@ import { SmileOutlined } from '@ant-design/icons';
 import { Button, Result } from 'antd';
 import { Link } from 'react-router-dom';
 
-import { GetConfigLayout } from '~/utils/configProvider';
+import { GetConfigLayout } from '~/context/configProvider';
 
 const WelcomePage = () => {
   const {

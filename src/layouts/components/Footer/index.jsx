@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { ZaloIcon, FacebookIcon, GithubIcon } from '~/assets/icons';
 import { ItemComponent } from '~/components';
-import { GetConfigLayout } from '~/utils/configProvider';
+import { GetConfigLayout } from '~/context/configProvider';
 
 const { Footer } = Layout;
 
