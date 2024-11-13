@@ -91,22 +91,29 @@ const ChatPage = () => {
         continue;
       }
 
-      result.push(URL.createObjectURL(file));
+      const data = {
+        url: URL.createObjectURL(file),
+        file: file,
+        id: `image-${i}-${Date.now()}-${Math.random().toString(36).substring(2, 8)}`,
+      };
+
+      result.push(data);
     }
     return result;
   };
 
-  const hanldeRemoveImagePreview = (imagePreview) => {
-    const indexToRemove = imageSelect.indexOf(imagePreview);
-    if (typeof indexToRemove === 'number') {
-      setImageSelect(imageSelect.filter((_, index) => index !== indexToRemove));
-
-      URL.revokeObjectURL(imagePreview);
-    }
+  const hanldeRemoveImagePreview = (id) => {
+    setImageSelect((prev) => {
+      const itemToRemove = prev.find((item) => item.id === id);
+      if (itemToRemove) {
+        URL.revokeObjectURL(itemToRemove.url);
+      }
+      return prev.filter((item) => item.id !== id);
+    });
   };
 
   const handleSendMessage = () => {
-    if (!inputMessage.trim()) {
+    if (!inputMessage.trim() && imageSelect.length < 1) {
       messageApi.error('Tin nhắn không hợp lệ'); //getLanguageValue(languageSelected, 'dungLuongToiDa'));
 
       return;
@@ -183,14 +190,14 @@ const ChatPage = () => {
             {imageSelect && imageSelect.length > 0 && (
               <div className={style['wapper-image-preview']}>
                 <div className={style['preview-body']}>
-                  {imageSelect.map(function (dataImageUrl, index) {
+                  {imageSelect.map(function (data, index) {
                     return (
                       <div key={index} className={style['card-image']}>
                         <div className={style['image-container']}>
-                          <img alt="image-preview" src={dataImageUrl} />
+                          <img alt="image-preview" src={data.url} />
                         </div>
                         <div className={style['button-container']}>
-                          <button data-url={dataImageUrl} onClick={() => hanldeRemoveImagePreview(dataImageUrl)}>
+                          <button onClick={() => hanldeRemoveImagePreview(data.id)}>
                             <CloseOutlined />
                           </button>
                         </div>
