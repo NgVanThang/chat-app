@@ -11,8 +11,10 @@
     display: grid;
     justify-items: center;
 
-    .logo {
+    .logo,
+    svg {
       width: 12rem;
+      height: 12rem;
     }
 
     .text-loading {

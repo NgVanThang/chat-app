@@ -1,9 +1,11 @@
+import React from 'react';
 import { Row, Col, theme, Spin } from 'antd';
 import { GetConfigLayout } from '~/context/configProvider';
 
+import { LogoIcon } from '~/assets/icons';
 import style from './style.module.scss';
 
-function LoadingPage() {
+const LoadingPage = React.memo(() => {
   const {
     languageOption: { languageSelected, getLanguageValue },
   } = GetConfigLayout();
@@ -17,7 +19,7 @@ function LoadingPage() {
       <Col span={24}>
         <div className={style['container-loading']}>
           <div className={style['header-container']}>
-            <img className={style['logo']} alt="logo" src="images/logo.svg" />
+            <LogoIcon />
             <div style={{ color: customColorPrimary }} className={style['text-loading']}>
               <Spin className={style['icon-loading']} /> {getLanguageValue(languageSelected, 'dangTai')}
             </div>
@@ -29,6 +31,6 @@ function LoadingPage() {
       </Col>
     </Row>
   );
-}
+});
 
 export default LoadingPage;

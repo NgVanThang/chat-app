@@ -1,0 +1,54 @@
+:root {
+  --heightImage: clamp(220px, 20vw, 300px);
+  --widthImage: clamp(110px, 11vw, 300px);
+}
+
+.image-wapper {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 100%;
+}
+
+@keyframes loading {
+  0% {
+    background-color: #7c7c7c; /* Màu bắt đầu - xám đậm */
+  }
+  50% {
+    background-color: #b1b1b1; /* Màu giữa - gần đen */
+  }
+  100% {
+    background-color: #7c7c7c; /* Quay lại màu bắt đầu */
+  }
+}
+
+.fallback-image {
+  //  padding: 0.8rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+
+  .text-error-image {
+    margin-left: 0.3rem;
+  }
+}
+
+.img-item {
+  transform-origin: center;
+  object-fit: cover;
+  border-radius: 20px;
+  width: var(--widthImage);
+  height: var(--heightImage);
+  box-sizing: border-box;
+  box-shadow: 5px 0px 6px #5e47477a, 5px 0px 15px #ffffff00;
+  cursor: pointer;
+  transition: all 0.3s linear;
+  //  background-color: red;
+  animation: loading 2s linear infinite;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}

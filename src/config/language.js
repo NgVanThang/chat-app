@@ -31,6 +31,7 @@ const languages = {
     dungLuongToiDa: 'Dung lượng tối đa của file là 5MB',
     themLuaChon: 'Các lựa chọn khác',
     taiAnhLen: 'Tải ảnh lên',
+    loiAnh: 'Ảnh không tồn tại',
   },
   en: {
     settings: {
@@ -64,6 +65,7 @@ const languages = {
     dungLuongToiDa: 'Maximum file size is 5MB',
     themLuaChon: 'More options',
     taiAnhLen: 'Upload image',
+    loiAnh: 'Image failed to load',
   },
 };
 

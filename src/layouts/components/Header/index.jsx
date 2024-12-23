@@ -106,6 +106,7 @@ const HeaderComponent = ({ ...props }) => {
         top: 0,
         color: customColorPrimary,
         zIndex: 1000,
+        height: 60,
       }}
     >
       <Space>

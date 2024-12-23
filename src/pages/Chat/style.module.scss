@@ -1,25 +1,60 @@
 .chat-container {
   display: flex;
   flex-direction: column;
+  height: calc(100vh - 60px);
   padding: 10px;
 }
 
 .chat-card {
   flex: 1;
   overflow-y: auto;
-  margin-bottom: 0.9rem;
-  min-height: calc(100vh - 9rem);
-  max-height: calc(100vh - 9rem);
+  margin-bottom: 0.3rem;
   overflow: auto; /* Cho phép cuộn nội dung */
   scrollbar-width: none; /* Ẩn thanh cuộn trên Firefox */
   -ms-overflow-style: none; /* Ẩn thanh cuộn trên Internet Explorer và Edge */
   position: relative;
 
+  &::-webkit-scrollbar {
+    display: none; /* Ẩn thanh cuộn trên Chrome, Safari và Opera */
+  }
+
+  .button-to-bottom-wrapper {
+    position: sticky;
+    bottom: 0; // Keeps the wrapper element at the bottom of the chat-card
+    display: flex;
+    justify-content: flex-end; // Aligns the button to the right
+  }
+
+  .button-to-bottom {
+    position: absolute;
+    bottom: 20px; // 20px from the bottom of the parent element (chat-card)
+    right: 5px; // Adjust for right margin
+    background-color: #c9c9c9;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 0.7rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 10; // Keeps the button on top
+
+    transition: opacity 0.3s ease-in-out;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+.wapper-input {
+  flex-shrink: 0; // Không co lại khi container thay đổi kích thước
+
   .wapper-image-preview {
     width: 100%;
     height: auto;
+    // z-index: 10000;
     /* From https://css.glass */
-    background: rgb(0 0 0 / 30%);
+    background: #62626291;
     border-radius: 16px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5.2px);
@@ -32,7 +67,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0.2rem 0;
+    padding: 0.1rem 0;
+    overflow: hidden;
 
     .preview-header {
       display: grid;
@@ -49,18 +85,38 @@
       border-radius: 20px;
 
       &::-webkit-scrollbar {
-        height: 7px;
+        display: none;
       }
 
-      &::-webkit-scrollbar-track {
-        box-shadow: inset 0 0 5px grey;
-        border-radius: 10px;
-      }
+      .upload-loading {
+        background-color: #004eff6e;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-      /* Handle */
-      &::-webkit-scrollbar-thumb {
-        background: #4e4e4e;
-        border-radius: 10px;
+        .spin-upload {
+          width: 2rem;
+          height: 2rem;
+          border-top: 1px solid #ffffff;
+          border-radius: 50%;
+          animation: spin 0.3s linear infinite;
+        }
+
+        @keyframes spin {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
+        }
       }
 
       .card-image {
@@ -100,135 +156,104 @@
     }
   }
 
-  .button-to-bottom-wrapper {
-    position: sticky;
-    bottom: 0; // Keeps the wrapper element at the bottom of the chat-card
-    display: flex;
-    justify-content: flex-end; // Aligns the button to the right
-  }
-
-  .button-to-bottom {
-    position: absolute;
-    bottom: 20px; // 20px from the bottom of the parent element (chat-card)
-    right: 5px; // Adjust for right margin
-    background-color: #c9c9c9;
-    color: #fff;
-    border: none;
-    padding: 0.6rem 0.7rem;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    z-index: 10; // Keeps the button on top
-
-    transition: opacity 0.3s ease-in-out;
-
-    &:hover {
-      opacity: 0.8;
-    }
-  }
-}
-
-.chat-card::-webkit-scrollbar {
-  display: none; /* Ẩn thanh cuộn trên Chrome, Safari và Opera */
-}
-
-.chat-input-container {
-  background-color: #f3f1f1;
-  padding: 0.3rem;
-  border-radius: 20px 0 0 20px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  .wapper-input-file {
+  .chat-input-container {
+    padding: 0.3rem;
+    border-radius: 20px 0 0 20px;
     display: flex;
     align-items: center;
-    gap: 3px;
-    cursor: pointer;
+    gap: 10px;
+    margin-top: 0.3rem;
 
-    button {
-      width: 2rem;
-      height: 2rem;
-      border: none;
-      background-color: transparent;
-      color: #a5a5a5;
+    .wapper-input-file {
+      display: flex;
+      align-items: center;
+      gap: 3px;
       cursor: pointer;
 
-      & > i,
-      svg {
-        font-size: 20px !important;
+      button {
+        width: 2rem;
+        height: 2rem;
+        border: none;
+        background-color: transparent;
+        color: #a5a5a5;
         cursor: pointer;
-        vertical-align: middle;
+
+        & > i,
+        svg {
+          font-size: 20px !important;
+          cursor: pointer;
+          vertical-align: middle;
+        }
+
+        &:hover {
+          color: #888 !important;
+        }
       }
 
+      .button-choice-file {
+        position: relative;
+        display: inline-block;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+
+        input[type='file'] {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          cursor: pointer;
+        }
+      }
+    }
+
+    input {
+      &::placeholder {
+        color: gray;
+      }
+
+      border: none;
+      background-color: transparent;
+
+      &:focus,
       &:hover {
-        color: #888 !important;
-      }
-    }
-
-    .button-choice-file {
-      position: relative;
-      display: inline-block;
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 0;
-
-      input[type='file'] {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        cursor: pointer;
+        border: none !important;
+        box-shadow: none;
+        background-color: transparent;
       }
     }
   }
 
-  input {
-    &::placeholder {
-      color: gray;
-    }
-
+  .send-button {
+    background: linear-gradient(135deg, #2c3e50, #34495e); // Gradient background
+    color: #ffffff; // White text color
     border: none;
-    background-color: transparent;
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 8px; // Rounded corners
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Soft shadow
+    transition: all 0.3s ease; // Smooth transition for hover and active states
+    width: 8rem !important;
 
-    &:focus,
     &:hover {
-      border: none !important;
-      box-shadow: none;
-      background-color: transparent;
+      background: linear-gradient(135deg, #34495e, #2c3e50); // Reverse gradient on hover
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); // Larger shadow on hover
+      transform: translateY(-2px); // Lift effect on hover
     }
-  }
-}
 
-.send-button {
-  background: linear-gradient(135deg, #2c3e50, #34495e); // Gradient background
-  color: #ffffff; // White text color
-  border: none;
-  padding: 10px 16px;
-  font-size: 16px;
-  border-radius: 8px; // Rounded corners
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Soft shadow
-  transition: all 0.3s ease; // Smooth transition for hover and active states
-  width: 8rem !important;
+    &:active {
+      background: linear-gradient(135deg, #1f2e3b, #2c3e50); // Darker gradient when active
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); // Slightly reduce shadow on active
+      transform: translateY(0); // Return to original position
+    }
 
-  &:hover {
-    background: linear-gradient(135deg, #34495e, #2c3e50); // Reverse gradient on hover
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); // Larger shadow on hover
-    transform: translateY(-2px); // Lift effect on hover
-  }
-
-  &:active {
-    background: linear-gradient(135deg, #1f2e3b, #2c3e50); // Darker gradient when active
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); // Slightly reduce shadow on active
-    transform: translateY(0); // Return to original position
-  }
-
-  &:focus {
-    outline: none; // Remove default outline
-    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3); // Add custom focus ring
+    &:focus {
+      outline: none; // Remove default outline
+      box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.3); // Add custom focus ring
+    }
   }
 }

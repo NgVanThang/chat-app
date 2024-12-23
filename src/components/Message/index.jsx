@@ -4,9 +4,10 @@ import { Avatar, theme } from 'antd';
 import { useTime } from '~/hooks';
 import { GetConfigLayout } from '~/context/configProvider';
 import { UserInfo } from '~/context/authProvider';
+import { ImagesComponent } from '~/components';
 import style from './style.module.scss';
 
-const MessageComponent = ({ avatar, name, time, message, uid }) => {
+const MessageComponent = React.memo(({ avatar, name, time, images, message, uid }) => {
   const {
     token: { customColorPrimary, customBackgroundChat },
   } = theme.useToken();
@@ -47,15 +48,26 @@ const MessageComponent = ({ avatar, name, time, message, uid }) => {
         <div className={style['message-header']}>
           <span className={style['message-name']}>{name}</span>
         </div>
+
         <div className={style['message-body']}>
-          <div style={messageStyle} className={style['message-text']}>
-            {messageContent}
+          <div className={style['wapper-content']}>
+            {images && images.length > 0 && (
+              <div className={style['message-file']}>
+                <ImagesComponent images={images} />
+              </div>
+            )}
+
+            {messageContent && (
+              <div style={messageStyle} className={style['message-text']}>
+                {messageContent}
+              </div>
+            )}
           </div>
           <span className={style['message-time']}>{formattedTime}</span>
         </div>
       </div>
     </div>
   );
-};
+});
 
 export default MessageComponent;

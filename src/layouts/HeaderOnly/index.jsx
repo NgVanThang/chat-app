@@ -14,9 +14,7 @@ function HeaderOnly({ children }) {
         <div
           style={{
             background: customBackgroundColor,
-            maxHeight: '100vh',
             overflow: 'hidden',
-            padding: 2,
           }}
         >
           {children}

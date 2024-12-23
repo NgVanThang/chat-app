@@ -2,6 +2,7 @@ import { WechatOutlined } from '@ant-design/icons';
 
 import { GetConfigLayout } from '~/context/configProvider';
 import { ServiceComponent } from '~/components';
+import style from './style.module.scss';
 
 function HomePage() {
   const {
@@ -42,7 +43,9 @@ function HomePage() {
 
   return (
     <>
-      <ServiceComponent title={getLanguageValue(languageSelected, 'luaChonDichVu')} items={items} />
+      <div className={style['home-container']}>
+        <ServiceComponent title={getLanguageValue(languageSelected, 'luaChonDichVu')} items={items} />
+      </div>
     </>
   );
 }

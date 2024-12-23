@@ -14,7 +14,6 @@ function DefaultLayout({ children }) {
         <div
           style={{
             background: customBackgroundColor,
-            minHeight: '100vh',
             height: 'fit-content',
             padding: 24,
           }}
