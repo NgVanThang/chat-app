@@ -13,3 +13,4 @@ export { default as ProfilePage } from './Profile';
 export { default as ChatPage } from './Chat';
 export { default as WelcomePage } from './Welcome';
 export { default as DownloadPage } from './Download';
+export { default as ApiPage } from './Api';

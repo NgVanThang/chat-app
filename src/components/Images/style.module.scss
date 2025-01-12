@@ -9,6 +9,10 @@
   gap: 10px;
   flex-wrap: wrap;
   max-width: 100%;
+
+  &:hover .img-item:not(:hover) {
+    filter: blur(10px);
+  }
 }
 
 @keyframes loading {
@@ -47,8 +51,4 @@
   transition: all 0.3s linear;
   //  background-color: red;
   animation: loading 2s linear infinite;
-
-  &:hover {
-    transform: scale(1.05);
-  }
 }

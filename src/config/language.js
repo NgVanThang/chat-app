@@ -32,6 +32,7 @@ const languages = {
     themLuaChon: 'Các lựa chọn khác',
     taiAnhLen: 'Tải ảnh lên',
     loiAnh: 'Ảnh không tồn tại',
+    thuNghiemApi: 'Thử nghiệm API',
   },
   en: {
     settings: {
@@ -66,6 +67,7 @@ const languages = {
     themLuaChon: 'More options',
     taiAnhLen: 'Upload image',
     loiAnh: 'Image failed to load',
+    thuNghiemApi: 'Test API',
   },
 };
 

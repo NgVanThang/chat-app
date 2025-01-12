@@ -1,4 +1,4 @@
-import { WechatOutlined } from '@ant-design/icons';
+import { WechatOutlined, ApiOutlined } from '@ant-design/icons';
 
 import { GetConfigLayout } from '~/context/configProvider';
 import { ServiceComponent } from '~/components';
@@ -28,15 +28,30 @@ function HomePage() {
       cover: <WechatOutlined />,
       style: {
         width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
       },
     },
     {
       key: 3,
       name: getLanguageValue(languageSelected, 'nhanTin'),
-      path: '/chat',
+      path: '/profile',
       cover: <WechatOutlined />,
       style: {
         width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+      },
+    },
+    {
+      key: 4,
+      name: getLanguageValue(languageSelected, 'thuNghiemApi'),
+      path: '/api',
+      cover: <ApiOutlined />,
+      style: {
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
       },
     },
   ];

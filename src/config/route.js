@@ -8,6 +8,7 @@ import {
   RegisterPage,
   WelcomePage,
   DownloadPage,
+  ApiPage,
 } from '~/pages';
 
 const publicRoute = [
@@ -23,6 +24,7 @@ const privateRoute = [
   { path: '/chat', component: ChatPage, layout: HeaderOnly },
   { path: '/welcome', component: WelcomePage },
   { path: '/register', component: RegisterPage, layout: null },
+  { path: '/api', component: ApiPage, layout: null },
   { path: '/download-video', component: DownloadPage },
 ];
 

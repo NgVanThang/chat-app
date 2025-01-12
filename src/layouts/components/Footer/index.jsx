@@ -14,7 +14,7 @@ function FooterComponent() {
   } = theme.useToken();
   const style = {
     backgroundColor: customBackgroundFooter,
-    height: 200,
+    height: 'fit-content',
   };
   const styleIcon = {
     width: '3rem',

@@ -34,10 +34,8 @@ const ImagesComponent = React.memo(({ images }) => {
     <div className={style['image-wapper']}>
       {imgArray.map((data, index) => {
         if (errorIndexes.includes(index)) {
-          // Show fallback component for errored images
           return (
             <div key={index} className={style['fallback-image']}>
-              {/* Replace this with your fallback component */}
               <FrownOutlined />
               <span className={style['text-error-image']}>{getLanguageValue(languageSelected, 'loiAnh')}</span>
             </div>

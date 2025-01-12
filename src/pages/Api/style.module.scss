@@ -1,0 +1,28 @@
+.gutter-row {
+  display: grid;
+  align-items: flex-end;
+  padding: 8px;
+}
+
+.row-content {
+  display: flex;
+  height: 100%;
+
+  .col-content {
+    padding: 5px;
+    height: 100%; /* Chiều cao đầy đủ cho cột */
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.header-form-api {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  margin: 0.4rem 0;
+}
+
+.padding-3 {
+  padding: 3px;
+}

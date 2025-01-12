@@ -13,7 +13,7 @@ function ServiceComponent({ title = '', items = [] }) {
           return (
             <Col key={key} xs={24} sm={12} md={8} lg={6}>
               <Link to={path}>
-                <Card hoverable style={style}>
+                <Card className={style['title-center']} hoverable style={style}>
                   <Meta title={name} />
                 </Card>
               </Link>

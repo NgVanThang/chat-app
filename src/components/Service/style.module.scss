@@ -3,13 +3,9 @@
   flex-wrap: wrap;
 }
 
-.custom-row > .ant-col {
+.title-center {
+  text-align: center;
+  width: 100%;
   display: flex;
   justify-content: center; /* Căn giữa item */
-}
-
-@media (max-width: 767px) {
-  .custom-row {
-    justify-content: start !important; /* Bắt đầu từ trái khi xuống dòng */
-  }
 }
